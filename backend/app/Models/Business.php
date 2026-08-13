@@ -27,4 +27,12 @@ class Business extends Model
     {
         return $this->hasMany(Branch::class);
     }
+
+    /**
+     * Users who belong to this business.
+     */
+    public function memberships(): HasMany
+    {
+        return $this->hasMany(BusinessMembership::class);
+    }
 }

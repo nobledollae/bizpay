@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
@@ -14,6 +15,14 @@ use Illuminate\Notifications\Notifiable;
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
+
+/**
+ * Business memberships belonging to this user.
+ */
+public function businessMemberships(): HasMany
+{
+    return $this->hasMany(BusinessMembership::class);
+}
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
